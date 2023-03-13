@@ -1,5 +1,7 @@
 all: clear clearc build mvassets test
 
+release: clear clearc build mvassets package
+
 clear:
 	@-rm ./build/*
 	@-rm ./build/assets/*
