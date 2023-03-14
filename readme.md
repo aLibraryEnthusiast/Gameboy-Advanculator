@@ -10,13 +10,16 @@ Xft library
 
 Freetype library
 
+QT5
+
 p7zip
 
-On Ubuntu or other systems with apt/apt-get, you can install these dependencies using the following command:
+On Ubuntu or other debian with apt/apt-get, you can install these dependencies using the following command:
 
 ```csharp
-sudo apt-get install libx11-dev libxft-dev libfreetype6-dev p7zip
+sudo apt-get install libx11-dev libxft-dev libfreetype6-dev p7zip qt5-default
 ```
+
 ## Building and Running
 To build this program, run the following command:
 

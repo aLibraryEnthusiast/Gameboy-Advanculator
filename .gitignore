@@ -1,2 +1,8 @@
 build/
 Gameboy_Advanceulator.7z
+Sha256Sum.txt
+
+
+#these are some tests im running, dont want to clog up the repo just to delete them later
+nill/
+src/ptrExp.cpp

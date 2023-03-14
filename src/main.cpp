@@ -14,8 +14,9 @@
 #include FT_FREETYPE_H
 #include "./headder_files/state_data.h"
 #include "./getCWD.cpp"
+#include "./gbacore.cpp"
 
-//defines (not used)
+//defines
 #define CLOCK_SPD = 4.194
 
 using namespace std;
@@ -26,9 +27,17 @@ int main(int argc, char* argv[]){
     string state = state_title;
     ostringstream titleStreaming;
     titleStreaming << GBA_EMU_NOM << " v" << GBA_EMU_VER << " " << GBA_EMU_TYP;
+    if(GBA_EMU_MOD == 1){
+        titleStreaming << " | " << GBA_EMU_MOD_NOM << " v" << GBA_EMU_MOD_VER << " " << GBA_EMU_MOD_TYP;
+    }
     string titlez = titleStreaming.str();
     string todraw[] = {titlez, "1) Open ROM ", "2) Options", "3) About", "4) Github page", "5) exit"};
-    cout << "Gameboy Advanculator V" << GBA_EMU_VER << " " << GBA_EMU_TYP << endl;
+    if(GBA_EMU_MOD == 0){
+        cout << "Gameboy Advanculator V" << GBA_EMU_VER << " " << GBA_EMU_TYP << endl;
+    }
+    else{
+        cout << "Gameboy Advanculator V" << GBA_EMU_VER << " " << GBA_EMU_TYP << " | " << GBA_EMU_MOD_NOM << " v" << GBA_EMU_MOD_VER << " " << GBA_EMU_MOD_TYP << endl;
+    }
     
     // Initialize X11
     Display* display = XOpenDisplay(NULL);
@@ -101,7 +110,7 @@ int main(int argc, char* argv[]){
                 switch (key) {
                     case XK_1:
                         if(state == "title"){
-                            //do rom parsing here
+                            passover(4.194);
                         }
                         break;
                     case XK_2:

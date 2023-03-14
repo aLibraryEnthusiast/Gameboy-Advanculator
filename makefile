@@ -8,6 +8,7 @@ clear:
 	@-rm ./build/assets/*
 	@-rmdir ./build/assets
 	@-rmdir ./build
+	@-rm ./Sha256Sum.txt
 
 clearc:
 	@-clear
@@ -15,12 +16,19 @@ clearc:
 build:
 	-@mkdir ./build
 	g++ ./src/main.cpp -o ./build/main.o -lX11 -I/usr/include/freetype2 -lfreetype -lXft
+
 	@echo "sha256sum:"
-	@sha256sum ./build/main.o
+	@sha256sum ./build/main.o > Sha256Sum.txt
+
+ptrtst: #part of tests im running, dont worry, they'll be removed later
+	-@mkdir nill
+	@g++ ./src/ptrExp.cpp -o ./nill/ptr.o
+	@./nill/ptr.o
 
 mvassets:
 	@-mkdir ./build/assets
 	@-cp ./src/assets/* ./build/assets/
+	@-cp ./Sha256Sum.txt ./build/Sha256Sum.txt
 
 cpREADME:
 	@-cp ./readme.md ./build/readme.txt
