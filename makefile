@@ -1,6 +1,7 @@
-all: clear clearc build mvassets test
+all: clear clearc build mvassets test #yes ik this is shorter but cope
 
-release: clear clearc build mvassets package
+release: clear clearc build mvassets cpREADME package #yes ik this is longer but cope
+
 
 clear:
 	@-rm ./build/*
@@ -19,7 +20,10 @@ build:
 
 mvassets:
 	@-mkdir ./build/assets
-	@-cp ./src/assets/GameCube.ttf ./build/assets/GameCube.ttf
+	@-cp ./src/assets/* ./build/assets/
+
+cpREADME:
+	@-cp ./readme.md ./build/readme.txt
 
 test:
 	@./build/main.o

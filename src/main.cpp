@@ -13,19 +13,21 @@
 #include <ft2build.h>
 #include FT_FREETYPE_H
 #include "./headder_files/state_data.h"
+#include "./getCWD.cpp"
 
 //defines (not used)
-
+#define CLOCK_SPD = 4.194
 
 using namespace std;
 
 
-int main(){
+
+int main(int argc, char* argv[]){
     string state = state_title;
     ostringstream titleStreaming;
     titleStreaming << GBA_EMU_NOM << " v" << GBA_EMU_VER << " " << GBA_EMU_TYP;
     string titlez = titleStreaming.str();
-    string todraw[] = {titlez, "1) open ROM ", "2) exit"};
+    string todraw[] = {titlez, "1) Open ROM ", "2) Options", "3) About", "4) Github page", "5) exit"};
     cout << "Gameboy Advanculator V" << GBA_EMU_VER << " " << GBA_EMU_TYP << endl;
     
     // Initialize X11
@@ -52,7 +54,11 @@ int main(){
         cerr << "Failed to initialize freetype library." << endl;
         return -1;
     }
-    if (FT_New_Face(ft, "/usr/share/fonts/chromeos/google-sans/static/GoogleSans-BoldItalic-v3.003.ttf", 0, &face)) {
+    cout <<GetDirectory(argv[0]) <<endl;
+    ostringstream f;
+    f << GetDirectory(argv[0]) << "/assets/font.ttf";
+    cout << "loading font: " << f.str().c_str() <<endl;
+    if (FT_New_Face(ft, f.str().c_str(), 0, &face)) {
         cerr << "Failed to load font." << endl;
         return -1;
     }
@@ -99,6 +105,19 @@ int main(){
                         }
                         break;
                     case XK_2:
+                        if(state == "title"){
+                            //do menu shit here
+                        }
+                        break;
+                    case XK_3:
+                        if(state=="title"){
+                            //change to about here
+                        }
+                        break;
+                    case XK_4:
+                        system("open https://github.com/aLibraryEnthusiast/Gameboy-Advanculator");
+                        break;
+                    case XK_5:
                         if(state == "title"){
                             exit(0);
                         }
